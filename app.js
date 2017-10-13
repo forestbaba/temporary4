@@ -11,7 +11,7 @@ var CONT_C = "users";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(true));
 
-mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, database)
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database)
 {
 	if(err)
 	{
