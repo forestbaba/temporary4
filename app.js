@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded(true));
 //	console.log("database connection ready");
 //})
 
-app.get('/',function(req, res)
+app.get('/home',function(req, res)
 	{
 		res.json('Testing to know its working');
 	});
