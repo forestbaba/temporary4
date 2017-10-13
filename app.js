@@ -11,17 +11,17 @@ var CONT_C = "users";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(true));
 
-mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, database)
-{
-	if(err)
-	{
-		console.log(err);
-		process.exit(1);
-	}
-
-	db = database;
-	console.log("database connection ready");
-})
+//mongodb.MongoClient.connect(process.env.MONGO_URI, function(err, database)
+//{
+//	if(err)
+//	{
+//		console.log(err);
+//		process.exit(1);
+//	}
+//
+//	db = database;
+//	console.log("database connection ready");
+//})
 
 app.get('/',function(req, res)
 	{
