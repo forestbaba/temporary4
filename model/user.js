@@ -12,5 +12,6 @@ var userSchema = schema(
             type: String
         },
     })
+var User = module.exports = mongoose.model('temptemp',userSchema );
 
-module.exports = mongoose.model('temp4', userSchema);
+//module.exportsts = mongoose.model('timeme', userSchema);

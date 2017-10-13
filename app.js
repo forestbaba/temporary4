@@ -10,8 +10,10 @@ var CONT_C = "users";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(true));
+//mongoose.connect('mongodb://localhost/temp4');
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database)
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
 {
 	if(err)
 	{
@@ -30,7 +32,12 @@ app.get('/home',function(req, res)
 
 app.post('/api/signUp', function(req, res)
 {
-	var user = new User(req.body);
+	var name = req.body.name;
+	var password = req.body.password;
+
+	var user = new User();
+	user.name = name;
+	user.password=password;
 	user.save();
 	res.json(req.body);
 	//var name = req.body.name;
