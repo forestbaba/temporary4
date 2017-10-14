@@ -62,6 +62,30 @@ app.post('/api/signUp', function(req, res)
 
 })
 
+app.post('/api/login', function(req, res)
+{
+	User.find(req.body, function(err, result)
+	{
+		if(err)
+		{
+			console.log('error out');
+		}
+		if(result && result.length === 1)
+		{
+			res.json({"status":"User found...."})
+			//var userData = result[0];
+            //
+			//res.json(
+			//	{
+			//		email:req.body.email,
+			//		_id :userData._id,
+			//		username : userData.username,
+			//		image: userData.image
+			//	});
+		}
+	})
+})
+
 app.listen(process.env.PORT || 9000, function()
 {
 	console.log('listening on: 9000')
