@@ -79,7 +79,7 @@ app.post('/api/login', function(req, res)
 			//	{
 			//		email:req.body.email,
 			//		_id :userData._id,
-			//		username : userData.username,
+			//		username : userData.username,,
 			//		image: userData.image
 			//	});
 		}
