@@ -3,7 +3,7 @@ var rand = require('csprng');
 var mongoose = require('mongoose');
 var gravatar = require('gravatar');
 //var user = require('config/models');
-var user = require('../models');
+var user = require('../model/user');
 
 
 exports.login = function(email,password,callback) {
