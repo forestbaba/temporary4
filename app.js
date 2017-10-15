@@ -8,7 +8,7 @@ var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
-var REGISTER = require('./routes/register');
+//var REGISTER = require('./routes/register');
 
 
 app.use(bodyParser.json());
