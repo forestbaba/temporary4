@@ -48,8 +48,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5151515">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.34343433">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,8 +95,8 @@
         <option value="$PROJECT_DIR$/routes/register.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/model/user.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/model/newUser.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -504,7 +504,7 @@
       <workItem from="1507901228166" duration="2363000" />
       <workItem from="1507904354195" duration="4232000" />
       <workItem from="1507933337005" duration="7029000" />
-      <workItem from="1507976122328" duration="17984000" />
+      <workItem from="1507976122328" duration="18153000" />
     </task>
     <task id="LOCAL-00001" summary="witthout mongodb">
       <created>1507912592357</created>
@@ -662,11 +662,17 @@
       <option name="project" value="LOCAL" />
       <updated>1508084306902</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="adding signin remodified now...wanna check again">
+      <created>1508107918839</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1508107918839</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35614000" />
+    <option name="totallyTimeSpent" value="35783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
@@ -904,8 +910,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5151515">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.34343433">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
