@@ -9,8 +9,9 @@ var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
 var Register = require('./routes/register');
+var Login = require('./routes/login');
 
-var CONTACTS_COLLECTION = "students";
+
 
 
 app.use(bodyParser.json());
@@ -39,28 +40,6 @@ app.get('/home',function(req, res)
 	{
 		res.json('Testing to know its working');
 	});
-
-
-
-
-//app.post("/api/contacts", function(req, res) {
-//	var newContact = req.body;
-//	newContact.createDate = new Date();
-//
-//	if (!req.body.name) {
-//		handleError(res, "Invalid user input", "Must provide a name.", 400);
-//	}
-//	db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
-//		if (err) {
-//			handleError(res, err.message, "Failed to create new contact.");.
-//		} else {
-//			res.status(201).json(doc.ops[0]);
-//		}
-//	});
-//});
-
-
-
 
 
 app.post('/api/signUp', function(req, res)
@@ -92,64 +71,19 @@ app.post('/api/signUp', function(req, res)
 		});
 	}
 
-
-
-	//var name = req.body.name;
-	//var password = req.body.password;
-	//var phone = req.body.pnumber;
-    //
-	//var user = new User();
-	//user.name = name;
-	//user.password=password;
-	//user.save();
-	//res.json(req.body);
-	//
-
-	//var name = req.body.name;
-	//var password = req.body.pass;
-    //
-	//var newUser = new User({
-	//	name: name,
-	//	password: password
-	//});
-    //
-	//User.save(newUser, function(err, user1)
-	//{
-	//	if(err)
-	//	throw err;
-	//	res.json(user1);
-	//})
-	//User.createUser(newUser, function(err, user){
-	//	if(err) throw err;
-	//	console.log(user);
-	//	res.json(user);
-	//});
-
 })
 
-app.post('/api/login', function(req, res)
-{
-	User.find(req.body, function(err, result)
-	{
-		if(err)
-		{
-			console.log('error out');
-		}
-		if(result && result.length === 1)
-		{
-			res.json({"status":"User found...."})
-			//var userData = result[0];
-            //
-			//res.json(
-			//	{
-			//		email:req.body.email,
-			//		_id :userData._id,
-			//		username : userData.username,,
-			//		image: userData.image
-			//	});
-		}
-	})
-})
+app.post('/api/login', function (req, res) {
+	var email = req.body.email;
+	var password = req.body.password;
+
+	Login.login(email, password, function (found) {
+		console.log(found);
+		res.json(found);
+	});
+});
+
+
 
 app.listen(process.env.PORT || 9000, function()
 {
