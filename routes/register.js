@@ -1,6 +1,6 @@
 var crypto = require('crypto');
 var rand = require('csprng');
-var user = require('./user');
+var user = require('./../model/user');
 
 
 //exports.register = function (email, password, callback)
