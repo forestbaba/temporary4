@@ -8,7 +8,7 @@ var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
-var Regispter = require('./routes/register');
+var Register = require('./routes/register');
 
 
 app.use(bodyParser.json());
@@ -39,31 +39,31 @@ app.get('/home',function(req, res)
 app.post('/api/signUp', function(req, res)
 {
 
-	//var email = req.body.email;
-	//var password = req.body.password;
-	//var phone = req.body.pnumber;
-    //
-    //
-    //
-	//req.checkBody('email', 'Email is required').notEmpty();
-	//req.checkBody('email', 'Email is not valid').isEmail();
-	//req.sanitize('email').normalizeEmail({ remove_dots: false });
-    //
-	//// Check for validation erro
-	//var errors = req.validationErrors();
-	//if (errors)
-	//{
-	//	return res.status(400).send(errors);
-	//}
-	//else
-	//{
-    //
-    //
-	//	REGISTER.register(email,password,phone, function (found) {
-	//		console.log(found);
-	//		res.json(found);
-	//	});
-	//}
+	var email = req.body.email;
+	var password = req.body.password;
+	var phone = req.body.pnumber;
+
+
+
+	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	req.sanitize('email').normalizeEmail({ remove_dots: false });
+
+	// Check for validation erro
+	var errors = req.validationErrors();
+	if (errors)
+	{
+		return res.status(400).send(errors);
+	}
+	else
+	{
+
+
+		Register.register(email,password,phone, function (found) {
+			console.log(found);
+			res.json(found);
+		});
+	}
 
 
 
