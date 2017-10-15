@@ -2,7 +2,17 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var mongodb = require('mongodb');
 
-var userSchema = mongoose.Schema({
+module.exports = mongoose.model('timeme',
+    {
+    //    user: String,
+    //    userId: String,
+    //    userImage: String,
+    //    content: String,
+    //    date:{type: Date, default: Date.now}
+    //
+    //})
+
+//var userSchema = mongoose.Schema({
     fname:String,
     lname:String,
     pnumber:String,
@@ -32,4 +42,4 @@ var userSchema = mongoose.Schema({
 //var User = module.exports = mongoose.model('students', userSchema);
 //mongoose.connect('mongodb://localhost:27017/t4');
 //
-module.exports = mongoose.model('timeme', userSchema);
+//module.exports = mongoose.model('timeme', userSchema);
