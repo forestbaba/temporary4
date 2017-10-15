@@ -10,7 +10,7 @@ var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
-//var Register = require('./routes/register');
+//var Regispter = require('./routes/register');
 
 
 app.use(bodyParser.json());
