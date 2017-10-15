@@ -17,23 +17,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
+var connectstring ='mongodb://heroku_kvw9cb8w:m6o009iinbrs95k6s3nl1m2843@ds119585.mlab.com:19585/heroku_kvw9cb8w';
 
-//mongoose.connect('mongodb://localhost/temp4').;
+mongoose.connect(connectstring);
 
 //mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_kvw9cb8w:m6o009iinbrs95k6s3nl1m2843@ds119585.mlab.com:19585/heroku_kvw9cb8w' , function(err, database)
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
-
-{
-	if(err)
-	{
-		console.log(err);
-		process.exit(1);
-	}
-
-	db = database;
-	console.log("database connection ready");
-})
+//mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
+//
+//{
+//	if(err)
+//	{
+//		console.log(err);
+//		process.exit(1);
+//	}
+//
+//	db = database;
+//	console.log("database connection ready");
+//})
 
 app.get('/home',function(req, res)
 	{
