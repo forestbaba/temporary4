@@ -10,16 +10,20 @@ var CONT_C = "users";
 var expressValidator = require('express-validator');
 var Register = require('./routes/register');
 
+var CONTACTS_COLLECTION = "students";
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 
-//mongoose.connec('mongodb://localhost/temp4');
+mongoose.connect('mongodb://localhost/temp4');
 
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
+//mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
+mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_kvw9cb8w:m6o009iinbrs95k6s3nl1m2843@ds119585.mlab.com:19585/heroku_kvw9cb8w' , function(err, database)
+
 {
 	if(err)
 	{
@@ -35,6 +39,29 @@ app.get('/home',function(req, res)
 	{
 		res.json('Testing to know its working');
 	});
+
+
+
+
+app.post("/api/contacts", function(req, res) {
+	var newContact = req.body;
+	newContact.createDate = new Date();
+
+	if (!req.body.name) {
+		handleError(res, "Invalid user input", "Must provide a name.", 400);
+	}
+	db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+		if (err) {
+			handleError(res, err.message, "Failed to create new contact.");
+		} else {
+			res.status(201).json(doc.ops[0]);
+		}
+	});
+});
+
+
+
+
 
 app.post('/api/signUp', function(req, res)
 {
