@@ -3,14 +3,12 @@ var mongoose = require ('mongoose');
 var app = express();
 var port = process.env.PORT || 21000;
 var User = require('./model/user');
-var Register = require('./model/register');
-
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
-//var Regispter = require('./routes/register');
+var Regispter = require('./routes/register');
 
 
 app.use(bodyParser.json());
@@ -18,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 
-//mongoose.connect('mongodb://localhost/temp4');
+//mongoose.connec('mongodb://localhost/temp4');
 
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/tento' , function(err, database)
