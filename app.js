@@ -43,21 +43,21 @@ app.get('/home',function(req, res)
 
 
 
-app.post("/api/contacts", function(req, res) {
-	var newContact = req.body;
-	newContact.createDate = new Date();
-
-	if (!req.body.name) {
-		handleError(res, "Invalid user input", "Must provide a name.", 400);
-	}
-	db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
-		if (err) {
-			handleError(res, err.message, "Failed to create new contact.");
-		} else {
-			res.status(201).json(doc.ops[0]);
-		}
-	});
-});
+//app.post("/api/contacts", function(req, res) {
+//	var newContact = req.body;
+//	newContact.createDate = new Date();
+//
+//	if (!req.body.name) {
+//		handleError(res, "Invalid user input", "Must provide a name.", 400);
+//	}
+//	db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+//		if (err) {
+//			handleError(res, err.message, "Failed to create new contact.");
+//		} else {
+//			res.status(201).json(doc.ops[0]);
+//		}
+//	});
+//});
 
 
 
