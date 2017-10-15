@@ -7,9 +7,15 @@ var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
+var expressValidator = require('express-validator');
+var REGISTER = require('./routes/register');
+
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded(true));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
+
+
 //mongoose.connect('mongodb://localhost/temp4');
 
 
@@ -32,14 +38,46 @@ app.get('/home',function(req, res)
 
 app.post('/api/signUp', function(req, res)
 {
-	var name = req.body.name;
-	var password = req.body.password;
 
-	var user = new User();
-	user.name = name;
-	user.password=password;
-	user.save();
-	res.json(req.body);
+	var email = req.body.email;
+	var password = req.body.password;
+	var phone = req.body.pnumber;
+
+
+
+	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	req.sanitize('email').normalizeEmail({ remove_dots: false });
+
+	// Check for validation erro
+	var errors = req.validationErrors();
+	if (errors)
+	{
+		return res.status(400).send(errors);
+	}
+	else
+	{
+
+
+		REGISTER.register(email,password,phone, function (found) {
+			console.log(found);
+			res.json(found);
+		});
+	}
+
+
+
+	//var name = req.body.name;
+	//var password = req.body.password;
+	//var phone = req.body.pnumber;
+    //
+	//var user = new User();
+	//user.name = name;
+	//user.password=password;
+	//user.save();
+	//res.json(req.body);
+	//
+
 	//var name = req.body.name;
 	//var password = req.body.pass;
     //
