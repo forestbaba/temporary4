@@ -3,13 +3,14 @@ var mongoose = require ('mongoose');
 var app = express();
 var port = process.env.PORT || 21000;
 var User = require('./model/user');
+var Register = require('./model/register');
+
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var ObjectID = mongodb.ObjectID;
 var CONT_C = "users";
 var expressValidator = require('express-validator');
 //var Register = require('./routes/register');
-require('./routes/register.js')(app);
 
 
 app.use(bodyParser.json());
