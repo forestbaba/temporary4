@@ -10,6 +10,7 @@ var CONT_C = "users";
 var expressValidator = require('express-validator');
 var Register = require('./routes/register');
 var Login = require('./routes/login');
+var Changepass = require('./routes/chgpass');
 
 
 
@@ -55,7 +56,7 @@ app.post('/api/signUp', function(req, res)
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-	// Check for validation erro
+	// Check for validation error
 	var errors = req.validationErrors();
 	if (errors)
 	{
@@ -82,6 +83,46 @@ app.post('/api/login', function (req, res) {
 		res.json(found);
 	});
 });
+
+
+app.post('/api/chgpass', function(req, res) {
+	var id = req.body.id;
+	var opass = req.body.oldpass;
+	var npass = req.body.newpass;
+
+	Changepass.cpass(id,opass,npass,function(found){
+		console.log(found);
+		res.json(found);
+	});
+});
+
+
+app.post('/api/resetpass', function(req, res) {
+
+	var email = req.body.email;
+
+	Changepass.respass_init(email,function(found){
+		console.log(found);
+		res.json(found);
+	});
+});
+
+
+app.post('/api/resetpass/chg', function(req, res) {
+
+	var email = req.body.email;
+	var code = req.body.code;
+	var npass = req.body.newpass;
+
+	Changepass.respass_chg(email,code,npass,function(found){
+		console.log(found);
+		res.json(found);
+	});
+});
+
+
+
+
 
 
 
