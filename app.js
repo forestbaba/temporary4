@@ -39,7 +39,7 @@ mongoose.connect(process.env.MONGODB_URI );
 
 app.get('/home',function(req, res)
 	{
-		res.json('welcome  to OAU  suppoert, what may we do for you today?');
+		res.json({"status":"welcome  to OAU  suppoert, what may we do for you today?"});
 	});
 
 
