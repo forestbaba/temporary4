@@ -6,9 +6,9 @@ var gravatar = require('gravatar');
 var user = require('../model/user');
 
 
-exports.login = function(email,password,callback) {
+exports.login = function(username,password,callback) {
 
-    user.find({email: email},function(err,users){
+    user.find({username: username},function(err,users){
 
         if(users.length != 0){
 
