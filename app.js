@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 
-//mongoose.connect(process.env.MONGODB_URI );
-mongoose.connect( 'mongodb://localhost:27017/t4');
+mongoose.connect(process.env.MONGODB_URI );
+//mongoose.connect( 'mongodb://localhost:27017/t4');
 
 //mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_kvw9cb8w:m6o009iinbrs95k6s3nl1m2843@ds119585.mlab.com:19585/heroku_kvw9cb8w' , function(err, database)
 
