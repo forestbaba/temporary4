@@ -86,10 +86,10 @@ app.post('/api/signUp', function(req, res)
 })
 
 app.post('/api/login', function (req, res) {
-	var email = req.body.email;
+	var username = req.body.username;
 	var password = req.body.password;
 
-	Login.login(email, password, function (found) {
+	Login.login(username, password, function (found) {
 		console.log(found);
 		res.json(found);
 	});
