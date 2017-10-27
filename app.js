@@ -64,7 +64,7 @@ app.post('/api/signUp', function(req, res)
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-	// Check for validation error
+	// Check for validation errors
 	var errors = req.validationErrors();
 	if (errors)
 	{
