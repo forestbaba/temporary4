@@ -17,7 +17,7 @@ exports.login = function(username,password,callback) {
             var id = users[0].token;
             var newpass = temp + password;
             var hashed_password = crypto.createHash('sha512').update(newpass).digest("hex");
-            var grav_url = gravatar.url(email, {s: '200', r: 'pg', d: '404'});
+            var grav_url = gravatar.url(username, {s: '200', r: 'pg', d: '404'});
             if(hash_db == hashed_password){
 
                 callback({'response':"Login Success",'res':true,'token':id,'grav':grav_url});
