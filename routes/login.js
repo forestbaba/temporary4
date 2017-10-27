@@ -26,9 +26,9 @@ exports.login = function(username,password,callback) {
             if(hash_db == hashed_password){
 
                 callback({'response':"Login Success",'res':true,'token':id,'grav':grav_url,
-                    'firstname':firstname,'lastname':lastname,'Phone':phone,
-                    'Email':email,
-                    'Username':username
+                    'firstname':firstname,'lastname':lastname,'phone':phone,
+                    'email':email,
+                    'username':username
                 });
 
             }
