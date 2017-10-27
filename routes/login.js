@@ -20,7 +20,7 @@ exports.login = function(username,password,callback) {
             //var grav_url = gravatar.url(username, {s: '200', r: 'pg', d: '404'});
             var firstname = users[0].fname;
             var lastname = users[0].lname;
-            var phone = users[0].phone;
+            var phone = users[0].pnumber;
             var email = users[0].email;
             var username = users[0].username
             if(hash_db == hashed_password){
