@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 
-mongoose.connect(process.env.MONGODB_URI );
+//mongoose.connect(process.env.MONGODB_URI );
+mongoose.connect( 'mongodb://localhost:27017/t4');
 
 //mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://heroku_kvw9cb8w:m6o009iinbrs95k6s3nl1m2843@ds119585.mlab.com:19585/heroku_kvw9cb8w' , function(err, database)
 
@@ -46,13 +47,20 @@ app.get('/home',function(req, res)
 app.post('/api/signUp', function(req, res)
 {
 
+	var firstname = req.body.firstname;
+	var lastname = req.body.lastname;
+	var username = req.body.username;
 	var email = req.body.email;
 	var password = req.body.password;
-	var phone = req.body.pnumber;
+	var phone = req.body.phone;
 
 
 
 	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('firstname', 'First Name is required').notEmpty();
+	req.checkBody('lastname', 'Last Name is required').notEmpty();
+	req.checkBody('username', 'Username is required').notEmpty();
+	req.checkBody('phone', 'phone is not valid').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.sanitize('email').normalizeEmail({ remove_dots: false });
 
@@ -66,7 +74,10 @@ app.post('/api/signUp', function(req, res)
 	{
 
 
-		Register.register(email,password,phone, function (found) {
+		//Register.register(email,password,phone,firstname,lastname,username, function (found)
+		console.log('inside now')
+		Register.register(email,password,phone,username,firstname,lastname, function (found)
+		{
 			console.log(found);
 			res.json(found);
 		});
