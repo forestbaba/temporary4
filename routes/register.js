@@ -4,9 +4,9 @@ var user = require('./../model/user');
 
 
 //exports.register = function (email, password, callback)
-exports.register = function ( email, password,pnumber, callback) {
+exports.register = function ( email,password,pnumber,username,firstname, lastname, callback) {
 
-    if (email != null && pnumber.length ==11) {
+    if (email != null && pnumber.length == 11) {
 
         console.log('Inside..X');
 
@@ -22,13 +22,16 @@ exports.register = function ( email, password,pnumber, callback) {
                 token: token,
                 email: email,
                 pnumber:pnumber,
+                fname:firstname,
+                lname:lastname,
+                username:username,
                 hashed_password: hashed_password,
                 salt: temp
             });
 
             console.log('stage 3....');
 
-            user.find({email: email}, function (err, users) {
+            user.find({username:username}, function (err, users) {
 
                 console.log('inside critical now...');
 
@@ -42,7 +45,7 @@ exports.register = function ( email, password,pnumber, callback) {
                     });
                 } else {
 
-                    callback({'response': "Either Email or Phone number is already Associated with another Account"});
+                    callback({'response': "Username is already Associated with another Account"});
 
                 }
             });
