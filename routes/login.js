@@ -22,14 +22,16 @@ exports.login = function(username,password,callback) {
 
                 callback({'response':"Login Success",'res':true,'token':id,'grav':grav_url});
 
-            }else{
+            }
+            else
+            {
 
                 callback({'response':"Invalid Password",'res':false});
 
             }
         }else {
 
-            callback({'response':"User not exist",'res':false});
+            callback({'response':"Invalid Username or Password",'res':false});
 
         }
     });
