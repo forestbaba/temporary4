@@ -27,7 +27,7 @@ exports.login = function(username,password,callback) {
             else
             {
 
-                callback({'response':"Invalid Password",'res':false});
+                callback({'response':"Invalid Password.",'res':false});
 
             }
         }else {
