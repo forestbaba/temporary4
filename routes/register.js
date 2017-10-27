@@ -45,7 +45,7 @@ exports.register = function ( email,password,pnumber,username,firstname, lastnam
                     });
                 } else {
 
-                    callback({'response': "Username is already Associated with another Account"});
+                    callback({'response': "Username is already Associated with another Account."});
 
                 }
             });
