@@ -25,7 +25,8 @@ exports.login = function(username,password,callback) {
             var username = users[0].username
             if(hash_db == hashed_password){
 
-                callback({'response':"Login Success",'res':true,'token':id,'grav':grav_url,
+                //callback({'response':"Login Success",'res':true,'token':id,'grav':grav_url,
+                callback({'response':"Login Success",'res':true,'token':id,
                     'firstname':firstname,'lastname':lastname,'phone':phone,
                     'email':email,
                     'username':username
