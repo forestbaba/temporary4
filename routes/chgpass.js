@@ -30,7 +30,9 @@ exports.cpass = function (id, opass, npass, callback) {
             var temp = users[0].salt;
             var hash_db = users[0].hashed_password;
             var newpass = temp + opass;
-            var hashed_password = crypto.createHash('sha512').update(newpass).digest("hex");
+            var hashed_password = crypto.createHash('sha512').update(opass).digest("hex");
+
+            //var hashed_password = crypto.createHash('sha512').update(newpass).digest("hex");
 
 
             if (hash_db == hashed_password)
@@ -57,7 +59,8 @@ exports.cpass = function (id, opass, npass, callback) {
 
                 }
             }
-            else {
+            else
+            {
 
                 callback({'response': "Passwords do not match. Try Again !", 'res': false});
 
