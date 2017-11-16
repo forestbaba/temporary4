@@ -19,6 +19,8 @@ exports.cpass = function (id, opass, npass, callback) {
     var newpass1 = temp1 + npass;
     var hashed_passwordn = crypto.createHash('sha512').update(newpass1).digest("hex");
 
+    console.log('>>>>>>>>>Call up<<<<<<<<<<...')
+
     user.find({token: id}, function (err, users) {
 
         if (users.length != 0)
