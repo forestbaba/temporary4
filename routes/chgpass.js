@@ -5,7 +5,7 @@ var nodemailer = require('nodemailer');
 //var user = require('config/models');
 var user = require('../model/user');
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
+var smtpTransport = nodemailer.createTransport("SMTP", {
     auth: {
         user: "adeoy3@gmail.com",
         pass: "08058741116"
@@ -13,15 +13,15 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 
 
-exports.cpass = function(id,opass,npass,callback) {
+exports.cpass = function (id, opass, npass, callback) {
 
-    var temp1 =rand(160, 36);
+    var temp1 = rand(160, 36);
     var newpass1 = temp1 + npass;
     var hashed_passwordn = crypto.createHash('sha512').update(newpass1).digest("hex");
 
-    user.find({token: id},function(err,users){
+    user.find({token: id}, function (err, users) {
 
-        if(users.length != 0){
+        if (users.length != 0) {
 
             var temp = users[0].salt;
             var hash_db = users[0].hashed_password;
@@ -29,112 +29,121 @@ exports.cpass = function(id,opass,npass,callback) {
             var hashed_password = crypto.createHash('sha512').update(newpass).digest("hex");
 
 
-            if(hash_db == hashed_password){
+            if (hash_db == hashed_password) {
                 if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
 
-                    user.findOne({ token: id }, function (err, doc){
+                    user.findOne({token: id}, function (err, doc) {
                         doc.hashed_password = hashed_passwordn;
                         doc.salt = temp1;
                         doc.save();
 
-                        callback({'response':"Password Sucessfully Changed",'res':true});
+                        callback({'response': "Password Sucessfully Changed", 'res': true});
 
                     });
-                }else{
+                }
+                else {
 
-                    callback({'response':"New Password is Weak. Try a Strong Password !",'res':false});
+                    callback({'response': "New Password is Weak. Try a Strong Password !", 'res': false});
 
                 }
-            }else{
+            }
+            else {
 
-                callback({'response':"Passwords do not match. Try Again !",'res':false});
+                callback({'response': "Passwords do not match. Try Again !", 'res': false});
 
             }
-        }else{
+        }
+        else {
 
-            callback({'response':"Error while changing password",'res':false});
+            callback({'response': "Error while changing password", 'res': false});
 
         }
 
     });
 }
 
-exports.respass_init = function(email,callback) {
+exports.respass_init = function (email, callback) {
 
-    var temp =rand(24, 24);
-    user.find({email: email},function(err,users){
+    var temp = rand(24, 24);
+    user.find({email: email}, function (err, users) {
 
-        if(users.length != 0){
+        if (users.length != 0) {
 
 
-            user.findOne({ email: email }, function (err, doc){
-                doc.temp_str= temp;
+            user.findOne({email: email}, function (err, doc) {
+                doc.temp_str = temp;
                 doc.save();
 
                 var mailOptions = {
-                    from: "Forest Baba  <adeoy3@gmail.com>",
+                    //from: "Forest Baba  <adeoy3@gmail.com>",\
+                    from: "adeoy3@gmail.com",
+
                     to: email,
                     subject: "Reset Password ",
-                    text: "Hello "+email+".  Code to reset your Password is "+temp+".nnRegards,forest nation.",
+                    text: "Hello " + email + ".  Code to reset your Password is " + temp + ".nnRegards,forest nation.",
 
                 }
 
-                smtpTransport.sendMail(mailOptions, function(error, response){
-                    if(error){
+                smtpTransport.sendMail(mailOptions, function (error, response) {
+                    if (error) {
 
-                        callback({'response':"Error While Resetting password. Try Again !",'res':false});
-                        console.log('The error is: ' +error)
+                        callback({'response': "Error While Resetting password. Try Again !", 'res': false});
+                        console.log('The error is: ' + error)
 
-                    }else{
+                    } else {
 
-                        callback({'response':"Check your Email and enter the verification code to reset your Password.",'res':true});
+                        callback({
+                            'response': "Check your Email and enter the verification code to reset your Password.",
+                            'res': true
+                        });
 
                     }
                 });
             });
-        }else{
+        } else {
 
-            callback({'response':"Email Does not Exists.",'res':false});
+            callback({'response': "Email Does not Exists.", 'res': false});
 
         }
     });
 }
 
-exports.respass_chg = function(email,code,npass,callback) {
+exports.respass_chg = function (email, code, npass, callback) {
 
 
-    user.find({email: email},function(err,users){
+    user.find({email: email}, function (err, users) {
 
-        if(users.length != 0){
+        if (users.length != 0) {
 
             var temp = users[0].temp_str;
-            var temp1 =rand(160, 36);
+            var temp1 = rand(160, 36);
             var newpass1 = temp1 + npass;
             var hashed_password = crypto.createHash('sha512').update(newpass1).digest("hex");
 
-            if(temp == code){
+            if (temp == code) {
                 if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
-                    user.findOne({ email: email }, function (err, doc){
-                        doc.hashed_password= hashed_password;
+                    user.findOne({email: email}, function (err, doc) {
+                        doc.hashed_password = hashed_password;
                         doc.salt = temp1;
                         doc.temp_str = "";
                         doc.save();
 
-                        callback({'response':"Password Sucessfully Changed",'res':true});
+                        callback({'response': "Password Sucessfully Changed", 'res': true});
 
-                    });}else{
+                    });
+                } else {
 
-                    callback({'response':"New Password is Weak. Try a Strong Password !",'res':false});
+                    callback({'response': "New Password is Weak. Try a Strong Password !", 'res': false});
 
                 }
-            }else{
+            } else {
 
-                callback({'response':"Code does not match. Try Again !",'res':false});
+                callback({'response': "Code does not match. Try Again !", 'res': false});
 
             }
-        }else{
+        } else {
 
-            callback({'response':"Error",'res':true});
+            callback({'response': "Error", 'res': true});
 
         }
     });
