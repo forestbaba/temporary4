@@ -21,7 +21,9 @@ exports.cpass = function (id, opass, npass, callback) {
 
     user.find({token: id}, function (err, users) {
 
-        if (users.length != 0) {
+        if (users.length != 0)
+        {
+            console.log('**-----user found...')
 
             var temp = users[0].salt;
             var hash_db = users[0].hashed_password;
@@ -29,8 +31,14 @@ exports.cpass = function (id, opass, npass, callback) {
             var hashed_password = crypto.createHash('sha512').update(newpass).digest("hex");
 
 
-            if (hash_db == hashed_password) {
-                if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+            if (hash_db == hashed_password)
+            {
+                //if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+
+                if ( npass.length > 4 )
+                {
+                    console.log('**-----user found stage 2----**')
+
 
                     user.findOne({token: id}, function (err, doc) {
                         doc.hashed_password = hashed_passwordn;
