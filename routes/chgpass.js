@@ -138,7 +138,10 @@ exports.respass_chg = function (email, code, npass, callback) {
             var hashed_password = crypto.createHash('sha512').update(newpass1).digest("hex");
 
             if (temp == code) {
-                if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+                //if (npass.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/) && npass.length > 4 && npass.match(/[0-9]/) && npass.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+                if (npass != null || npass > 7)
+                {
+
                     user.findOne({email: email}, function (err, doc) {
                         doc.hashed_password = hashed_password;
                         doc.salt = temp1;
