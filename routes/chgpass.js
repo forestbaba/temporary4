@@ -62,6 +62,10 @@ exports.cpass = function (id, opass, npass, callback) {
             else
             {
 
+                console.log('hash 1 ' + hash_db);
+
+                console.log('hash 2 ' + hashed_password);
+
                 callback({'response': "Passwords do not match. Try Again !", 'res': false});
 
             }
